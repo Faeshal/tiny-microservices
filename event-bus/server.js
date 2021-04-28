@@ -8,19 +8,16 @@ app.use(express.json());
 app.use(cors());
 
 // * Routing
-app.post("/api/events", async (req, res, next) => {
-  try {
-    const { event } = req.body;
+app.post('/events', (req, res) => {
+  const event = req.body;
 
-    await axios.post("http://localhost:4000/events", event);
-    await axios.post("http://localhost:4001/events", event);
-    await axios.post("http://localhost:4002/events", event);
+  axios.post('http://localhost:4000/events', event);
+  axios.post('http://localhost:4001/events', event);
+  axios.post('http://localhost:4002/events', event);
 
-    res.status(200).json({ success: true, data: "ok" });
-  } catch (err) {
-    next(err);
-  }
+  res.send({ status: 'OK' });
 });
+
 
 app.listen(PORT, (err) => {
   if (err) {
