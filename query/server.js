@@ -18,7 +18,6 @@ const handleEvent = (type, data) => {
   if (type === "CommentCreated") {
     const { id, content, postId, status } = data;
     const post = posts[postId];
-
     post.comments.push({ id, content, status });
   }
 
@@ -53,8 +52,8 @@ app.listen(4002, async () => {
   console.log("Listening on 4002");
   const res = await axios.get("http://localhost:4005/events");
   const datas = res.data;
-  for (data of datas) {
-    const { type, data } = data;
+  for (dataObj of datas) {
+    const { type, data } = dataObj;
     console.log("event:", type);
     handleEvent(type, data);
   }
