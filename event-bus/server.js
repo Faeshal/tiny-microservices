@@ -31,5 +31,6 @@ app.listen(PORT, (err) => {
   if (err) {
     return console.log(err);
   }
-  console.log(`Post Service is running on port ${PORT}`);
+  console.log("event bus v1");
+  console.log(`Event Bus Service is running on port ${PORT}`);
 });
