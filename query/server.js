@@ -33,12 +33,14 @@ const handleEvent = (type, data) => {
 };
 
 app.get("/posts", (req, res) => {
+  console.log("query service:", posts);
   res.send(posts);
 });
 
 app.post("/events", (req, res, next) => {
   try {
     const { type, data } = req.body;
+    console.log("query service - event:", req.body);
     handleEvent(type, data);
 
     console.log(posts);

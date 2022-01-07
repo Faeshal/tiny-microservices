@@ -18,6 +18,7 @@ app.get("/events", (req, res) => {
 app.post("/events", (req, res) => {
   const event = req.body;
   events.push(event);
+  console.log("bus - broadcaste event:", event);
 
   axios.post("http://posts-clusterip-srv:4000/events", event);
   axios.post("http://comments-srv:4001/events", event);
