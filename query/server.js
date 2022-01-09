@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { default: axios } = require("axios");
+const axios = require("axios").default;
 
 const app = express();
 app.use(express.json());
@@ -50,13 +50,21 @@ app.post("/events", (req, res, next) => {
   }
 });
 
-app.listen(4002, async () => {
-  console.log("Listening on 4002");
-  const res = await axios.get("http://event-bus-srv:4005/events");
-  const datas = res.data;
-  for (dataObj of datas) {
-    const { type, data } = dataObj;
-    console.log("event:", type);
-    handleEvent(type, data);
+const startup = async () => {
+  try {
+    const res = await axios.get("http://event-bus-srv:4005/events");
+
+    for (let event of res.data) {
+      console.log("Processing event:", event.type);
+
+      handleEvent(event.type, event.data);
+    }
+  } catch (err) {
+    console.log(err);
   }
-});
+
+  app.listen(4002, async () => {
+    console.log("Listening on 4002");
+  });
+};
+startup();
