@@ -18,6 +18,7 @@
 - [Skaffold](https://skaffold.dev/) (optional)
 
 ## Setting Host File
+
 Because i setup kubernetes host to posts.com, we need add posts.com into host config, like this:
 ![](https://i.postimg.cc/MpJQqbW9/Screen-Shot-2022-01-09-at-6-39-53-PM.png)
 
@@ -28,7 +29,7 @@ The Path of the hostfile config:
 
 With Skaffold:
 
-- `skaffold run dev`
+- `skaffold dev`
 - open browser, type: posts.com
 
 Without Skaffold :
@@ -37,4 +38,4 @@ Without Skaffold :
 - type: `kubectl apply -f .`
 - open browser, type: posts.com
 
-© 9 January 2022
+© January 2022
